@@ -19,5 +19,10 @@ export default App
 
 
 function Voting () {
-  
+  <p> </p> 
+      return (
+    <>
+      
+    </>
+  )
 }
