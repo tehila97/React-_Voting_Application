@@ -4,8 +4,8 @@ import './App.css'
 
 export default function LoginPage() {
 
-  // const [email, setEmail] = useState  ('');
-  // const [password, setPassword] = useState  ('');
+  const [email, setEmail] = useState  ('');
+  const [password, setPassword] = useState  ('');
 
   
   function handleSubmit (e) {
@@ -51,21 +51,38 @@ export default function LoginPage() {
 }
 
 
-// function VotingPage () {
-  
-//   <p> cats</p> 
-//   <p> dogs</p> 
-//   <p> cows</p> 
-//   <p> lions</p> 
+export default function VotingPage() {
+  function handleSubmit(e) {
+    e.preventDefault();
 
-//   <button> change vote</button>
-//   <button>done</button>
+    const form = e.target;
+    const formData = new FormData(form);
 
-//       return (
-//     <>
-      
-//     </>
-//   )
-// }
+    fetch('/some-api', { method: form.method, body: formData });
+    console.log(new URLSearchParams(formData).toString());
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson); 
+    console.log([...formData.entries()]);
+  }
+
+  return (
+    <form method="post" onSubmit={handleSubmit}>
+      <label>
+        Pick your favorite animel:
+        <select name="selectedAnimel" defaultValue="orange">
+          <option value="cats">cats</option>
+          <option value="dogs">dogs</option>
+          <option value="cows">cows</option>
+          <option value="lions">lions</option>
+
+        </select>
+      </label>
+   
+      <button type="changeVote">change vote</button>
+      <button type="done">done</button>
+    </form>
+  );
+}
+
 
 
